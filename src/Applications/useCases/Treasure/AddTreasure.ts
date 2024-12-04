@@ -1,24 +1,30 @@
-import { TreasureRepository } from "@/Applications/Ports/spi/TreasureRepository";
 import { Treasure } from "@/Domain/entities/Treasure";
+import { TreasureService } from "@/Domain/services/TreasureService";
 
-type TreasureInputs = {
+export type TreasureInputs = {
   name: string;
-  stroy: string;
+  solution: string;
+  hint: string;
+  position: number;
+  riddle: string;
 };
 
 export class AddTreasure {
-  constructor(private treasureRepository: TreasureRepository) {}
+  constructor(private treasureService: TreasureService) {}
 
   async execute(treasure: TreasureInputs): Promise<void> {
-    if (!treasure.name || !treasure.stroy) {
+    if (!treasure.name || !treasure.position) {
       throw new Error("Invalid treasure inputs");
     }
     const newTreasure = new Treasure(
       this.generateId(),
       treasure.name,
-      treasure.stroy
+      treasure.solution,
+      treasure.position,
+      treasure.hint,
+      treasure.riddle
     );
-    return await this.treasureRepository.saveTreasure(newTreasure);
+    return await this.treasureService.saveTreasure(newTreasure);
   }
   private generateId(): string {
     return `treasure_${Date.now()}`;
