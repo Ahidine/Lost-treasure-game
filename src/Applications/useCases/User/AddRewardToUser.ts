@@ -1,15 +1,16 @@
 import { Reward } from "@/Domain/entities/Reward";
+import { User } from "@/Domain/entities/User";
 import { UserService } from "@/Domain/services/UserService";
 
-export class GetUserRewards {
+export class AddRewardToUser {
   constructor(private userService: UserService) {}
 
-  async execute(userId: string): Promise<Reward[]> {
+  async execute(userId: string, reward: Reward): Promise<User> {
     const user = await this.userService.getUserById(userId);
     if (!user) {
       throw new Error("User not found");
     }
-    const userRewards = await this.userService.getRewardsByUserId(userId);
-    return userRewards;
+    const userUpdated = await this.userService.addRewardToUser(userId, reward);
+    return userUpdated;
   }
 }
