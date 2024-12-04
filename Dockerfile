@@ -8,8 +8,6 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
-
 EXPOSE 8000
 
-CMD ["ts-node", "--require", "tsconfig-paths/register", "src/index.ts"]
+CMD ["npx", "ts-node", "--require", "tsconfig-paths/register", "src/index.ts"]
