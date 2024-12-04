@@ -1,5 +1,5 @@
 import { TreasureRepository } from "@/Applications/Ports/spi/TreasureRepository";
-import { Treasure } from "../entities/Treasure";
+import { Treasure } from "@/Domain/entities/Treasure";
 
 export class TreasureService {
   constructor(private treasureRepository: TreasureRepository) {}
