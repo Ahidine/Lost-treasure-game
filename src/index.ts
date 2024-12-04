@@ -4,7 +4,7 @@ import treasureRouter from "@/Infrastructure/adapters/http/routes/TreasureRouter
 import authRouter from "./Infrastructure/adapters/http/routes/AuthRouter";
 import cors from "cors";
 import dotenv from "dotenv";
-import { authenticate } from "./Infrastructure/adapters/http/routes/authMiddleware";
+import { authenticate } from "@/Infrastructure/adapters/http/routes/authMiddleware";
 dotenv.config();
 
 const app = express();
